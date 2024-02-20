@@ -53,7 +53,6 @@ def test_repr_category(test_data):
                                      }]
 
 
-
 def test_init_product(test_data):
     '''тестирование функции инициализации класса Product'''
     category = test_data[0]
@@ -65,6 +64,7 @@ def test_init_product(test_data):
         assert product_instance.description == product['description']
         assert product_instance.price == product['price']
         assert product_instance.quantity == product['quantity']
+
 
 def test_repr_product(test_data):
     '''тестирование функции __repr__'''
