@@ -1,6 +1,7 @@
+from colorama import *
 from func import load_file
-from src.classes import Category, Product
-
+from src.class_category import Category
+from src.class_product import Product
 
 def main():
     '''
@@ -10,16 +11,19 @@ def main():
 
     for unit in data:
         category = Category(unit['name'], unit['description'], unit['products'])
-        print(f'Имя категории: {category.name}')
-        print(f'Описание категории: {category.description}')
-        print(f'Список товаров:\n')
+        print(Fore.GREEN + f'Имя категории: {Fore.RESET}{category.name}')
+        print(Fore.GREEN + f'Описание категории: {Fore.RESET}{category.description}')
+        print(Fore.GREEN + f'Список товаров: {Fore.RESET}\n')
 
         for product in category.goods:
             element = Product(product['name'], product['description'], product['price'], product['quantity'])
-            print(f'{element.name}\nОписание:{element.description}\nЦена: {element.price} руб\nКоличество: {element.quantity} шт\n')
+            print(Fore.CYAN + f'{element.name}')
+            print(Fore.GREEN + f'Описание: {Fore.RESET}{element.description}')
+            print(Fore.GREEN + f'Цена: {Fore.RESET}{element.price} руб')
+            print(Fore.GREEN + f'Количество: {Fore.RESET}{element.quantity} шт\n')
 
-    print(f'Всего категорий: {Category.total_categories}')
-    print(f'Всего товаров: {sum(Category.total_products)}')
+    print(Fore.GREEN + f'Всего категорий:{Fore.RESET} {Category.total_categories}')
+    print(Fore.GREEN+ f'Всего товаров:{Fore.RESET} {Category.total_products}')
 
 
 if __name__ == '__main__':
