@@ -31,9 +31,10 @@ def main():
                                                  category.goods)
             for product in category.goods:
                 product = Product(product['name'], product['description'], product['price'], product['quantity'])
-
                 product.price = product_price
-                category.goods = get_product
+                continue
+
+            category.goods = get_product
 
             print(f'\nСписок товаров: {category}\n')
             print(Fore.GREEN + f'Товар добавлен в категорию:{Fore.RESET} {category.name}')
