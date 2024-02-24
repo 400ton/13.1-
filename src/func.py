@@ -8,4 +8,3 @@ def load_file(filename) -> list:
     file_path = os.path.join(filename)
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
-

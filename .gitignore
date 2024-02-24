@@ -664,7 +664,7 @@ nbproject
 
 # zend studio for eclipse project files
 .buildpath
-.project
+!.project
 .settings
 
 # windows thumbnail cache
