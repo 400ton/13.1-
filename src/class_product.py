@@ -13,14 +13,16 @@ class Product:
     @classmethod
     def create_product(cls, name: str, description: str, price: float, quantity: int, products: list):
         '''Функция создания нового продукта'''
-        for value in products:
-            if value['name'] == name:
-                if value['price'] <= price:
-                    value['price'] = price
-                value['quantity'] += quantity
-                return value
-        else:
-            return dict(name=name, description=description, price=price, quantity=quantity)
+        for product in products:
+            if product[0] == name:
+                for value in product:
+                    if value['name'] == name:
+                        if value['price'] <= price:
+                            value['price'] = price
+                        value['quantity'] += quantity
+                        return value
+                    else:
+                        return dict(name=name, description=description, price=price, quantity=quantity)
 
     @property
     def price(self):

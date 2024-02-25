@@ -15,7 +15,7 @@ def main():
         print(Fore.GREEN + f'Имя категории: {Fore.RESET}{category.name}')
         print(Fore.GREEN + f'Описание категории: {Fore.RESET}{category.description}')
         print(Fore.GREEN + f'Список товаров: {Fore.RESET}')
-        print(f'{category}\n')
+        print(f'{category.goods}\n')
 
         user = input('Хотите добавить новый товар в категорию? Да/Нет ').lower()
 
@@ -24,21 +24,25 @@ def main():
         else:
             product_name = input('Введите название товара: ')
             product_description = input('Введите описание товара: ')
-            product_price = float(input('Введите цену товара: '))
-            product_count = int(input('Введите количество товара: '))
+            try:
+                product_price = float(input('Введите цену товара: '))
+            except ValueError:
+                print('Цена должна быть числом')
+                continue
+            try:
+                product_count = int(input('Введите количество товара: '))
+            except ValueError:
+                print('Количество должно быть числом')
+                continue
 
             get_product = Product.create_product(product_name, product_description, product_price, product_count,
                                                  category.goods)
-            for product in category.goods:
-                product = Product(product['name'], product['description'], product['price'], product['quantity'])
-                product.price = product_price
-                continue
-
+            print(get_product)
             category.goods = get_product
 
-            print(f'\nСписок товаров: {category}\n')
+            print(f'Список товаров: \n{category.goods}\n')
             print(Fore.GREEN + f'Товар добавлен в категорию:{Fore.RESET} {category.name}')
-            print(Fore.GREEN + f'Всего товаров:{Fore.RESET} {Category.total_products}\n')
+            print(Fore.GREEN + f'Всего товаров:{Fore.RESET} {len(category.goods)}\n')
 
 
 

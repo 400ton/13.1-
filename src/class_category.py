@@ -1,5 +1,6 @@
 from colorama import *
 
+
 class Category:
     '''
     Класс для категорий
@@ -18,7 +19,13 @@ class Category:
 
     @property
     def goods(self):
-        return self.__goods
+        '''
+        Функция вывода списка товаров в определенном формате
+        '''
+        return '\n'.join(f"{Fore.CYAN}{product["name"]}{Fore.RESET}, "
+                         f"{Fore.GREEN}Цена{Fore.RESET} {product["price"]}{Fore.GREEN} руб. "
+                         f"{Fore.GREEN}Остаток:{Fore.RESET} {product["quantity"]} {Fore.GREEN}шт"
+                         for product in self.__goods)
 
     @goods.setter
     def goods(self, product):
@@ -28,20 +35,6 @@ class Category:
         self.__goods.append(product)
         Category.total_products += 1
 
-    def __str__(self):
-        '''
-        Функция вывода списка товаров в определенном формате
-        '''
-        return '\n'.join([f"{Fore.CYAN}{product["name"]}{Fore.RESET}, "
-                          f"{Fore.GREEN}Цена{Fore.RESET} {product["price"]}{Fore.GREEN} руб. "
-                          f"{Fore.GREEN}Остаток:{Fore.RESET} {product["quantity"]} {Fore.GREEN}шт"
-                          for product in self.__goods])
-
     def __repr__(self):
         return f'{self.name}, {self.description}, {self.__goods}'
-
-
-
-
-
 
