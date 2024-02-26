@@ -1,7 +1,8 @@
 import json
 import os
 
-def load_file(filename) -> list:
+
+def load_file(filename):
     '''
     Функция загрузки информации из файла
     '''

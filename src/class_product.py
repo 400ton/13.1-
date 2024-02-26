@@ -1,4 +1,5 @@
 from colorama import *
+
 class Product:
     '''
     Класс для продуктов
@@ -12,17 +13,16 @@ class Product:
 
     @classmethod
     def create_product(cls, name: str, description: str, price: float, quantity: int, products: list):
-        '''Функция создания нового продукта'''
-        for product in products:
-            if product[0] == name:
-                for value in product:
-                    if value['name'] == name:
-                        if value['price'] <= price:
-                            value['price'] = price
-                        value['quantity'] += quantity
-                        return value
-                    else:
-                        return dict(name=name, description=description, price=price, quantity=quantity)
+        """Функция создания нового продукта"""
+        # for product in products:
+        #     if product['name'] == name:
+        #         if product['price'] <= price:
+        #             product['price'] = price
+        #             product['quantity'] += quantity
+        #             return product
+        #         else:
+
+        return dict(name=name, description=description, price=price, quantity=quantity)
 
     @property
     def price(self):
@@ -30,9 +30,10 @@ class Product:
 
     @price.setter
     def price(self, value: float):
-        '''Функция изменения цены продукта'''
+        '''Функция проверки и понижение цены продукта'''
         if value <= 0:
             print(Fore.RED + f'\nНедопустимое значение цены{Fore.RESET}{Fore.GREEN}\n')
+
         elif value < self._price:
             confirm = input("Вы действительно хотите понизить цену? (y/n): ").lower()
             if confirm == "y":
@@ -44,5 +45,3 @@ class Product:
 
     def __repr__(self):
         return f'{self.name}, {self.description}, {self._price}, {self.quantity}'
-
-
