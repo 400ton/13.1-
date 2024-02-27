@@ -1,4 +1,5 @@
 from colorama import *
+from class_product import Product
 
 
 class Category:
@@ -22,9 +23,9 @@ class Category:
         '''
         Функция вывода списка товаров в определенном формате
         '''
-        return '\n'.join(f"{Fore.CYAN}{product["name"]}{Fore.RESET}, "
-                         f"{Fore.GREEN}Цена{Fore.RESET} {product["price"]}{Fore.GREEN} руб. "
-                         f"{Fore.GREEN}Остаток:{Fore.RESET} {product["quantity"]} {Fore.GREEN}шт"
+        return '\n'.join(f"{Fore.CYAN}{product.name}{Fore.RESET}, "
+                         f"{Fore.GREEN}Цена{Fore.RESET} {product.price}{Fore.GREEN} руб. "
+                         f"{Fore.GREEN}Остаток:{Fore.RESET} {product.price} {Fore.GREEN}шт"
                          for product in self.__goods)
 
     @goods.setter
@@ -32,7 +33,9 @@ class Category:
         '''
         Функция добавления товара в категорию
         '''
-        self.__goods.append(product)
+        get_product = Product(name=product['name'], description=product['description'], price=product['price'],
+                              quantity=product['quantity'])
+        self.__goods.append(get_product)
         Category.total_products += 1
 
     def __repr__(self):
