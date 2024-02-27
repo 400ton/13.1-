@@ -12,6 +12,15 @@ class Product:
         self._price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{Fore.CYAN}{self.name}{Fore.RESET}, " \
+               f"{self._price} {Fore.GREEN}руб. " \
+               f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт"
+
+    def __add__(self, other):
+        result = (self._price * self.quantity) + (other._price * other.quantity)
+        return result
+
     @classmethod
     def create_product(cls, name: str, description: str, price: float, quantity: int, products: list):
         """
@@ -50,3 +59,4 @@ class Product:
 
     def __repr__(self):
         return f'{self.name}, {self.description}, {self._price}, {self.quantity}'
+
