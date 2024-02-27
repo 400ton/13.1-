@@ -17,6 +17,7 @@ class Product:
         """
         Функция создания нового продукта
         """
+        cls.create_product = name, description, price, quantity, products
         for value in products:
             if value.name == name:
                 if value.price <= price:
