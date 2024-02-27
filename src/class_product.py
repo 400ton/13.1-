@@ -18,7 +18,7 @@ class Product:
                f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт"
 
     def __add__(self, other):
-        result = (self._price * self.quantity) + (other._price * other.quantity)
+        result = (self._price * self.quantity) + (other.price * other.quantity)
         return result
 
     @classmethod

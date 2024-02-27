@@ -28,6 +28,9 @@ def test_init(test_data):
     assert category.total_categories == 1
     assert category.total_products == 3
 
+def test_len(test_data):
+    category = Category(test_data["name"], test_data["description"], test_data["products"])
+    assert len(category) == 3
 
 def test_goods(test_data):
     category = Category(test_data["name"], test_data["description"], test_data["products"])

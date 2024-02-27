@@ -1,7 +1,7 @@
-from colorama import *
-from func import load_file
-from src.class_category import Category
-from src.class_product import Product
+# from colorama import *
+# from func import load_file
+# from src.class_category import Category
+# from src.class_product import Product
 
 
 # def main():
