@@ -1,5 +1,5 @@
 from colorama import *
-from class_product import Product
+from src.class_product import Product
 
 
 class Category:
@@ -22,8 +22,8 @@ class Category:
         return len(self.__goods)
 
     def __str__(self):
-        return '\n'.join(f'{Fore.CYAN}{self.name} {Fore.RESET},'
-                         f'{Fore.GREEN}Всего продуктов:{Fore.RESET}{self.__len__} {Fore.GREEN}шт')
+        return f'{Fore.CYAN}{self.name} {Fore.RESET},' \
+               f'{Fore.GREEN}Всего продуктов:{Fore.RESET}{len(self)} {Fore.GREEN}шт'
 
     @property
     def goods(self):
@@ -32,13 +32,18 @@ class Category:
     @goods.setter
     def goods(self, product):
         '''
-        Функция добавления товара в категорию
+        Функция добавления продукта в категорию
+        :param объект класса Product:
         '''
-        get_product = Product(name=product['name'], description=product['description'], price=product['price'],
-                              quantity=product['quantity'])
-        self.__goods.append(get_product)
-        Category.total_products += 1
+        if isinstance(product, Product):
+            self.__goods.append(product)
+            Category.total_products += 1
+        else:
+            raise ValueError("Продукт должен быть объектом класса Product")
 
     def __repr__(self):
-        return f'{self.name}, {self.description}, {self.__goods}'
+        return (f'{Fore.RED}Имя класса: {self.__class__.__name__},\n'
+                f'Название категории, заданной при инициализации класса: {self.name},\n'
+                f'Описание категории: {self.description},\n'
+                f'Список продуктов: {self.__goods}{Fore.RESET}')
 

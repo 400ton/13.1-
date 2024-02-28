@@ -26,15 +26,16 @@ class Product:
         """
         Функция создания нового продукта
         """
-        cls.create_product = name, description, price, quantity, products
         for value in products:
-            if value.name == name:
-                if value.price <= price:
-                    value.price = price
-                    value.quantity += quantity
-                    return cls(value)
+            if value['name'] == name:
+                if value['price'] <= price:
+                    value['price'] = price
+                    value['quantity'] += quantity
+                    return cls(name=value['name'], description=value['description'], price=value['price'],
+                               quantity=value['quantity'])
                 else:
-                    return cls(dict(name=name, description=description, price=price, quantity=quantity))
+                    return cls(name=value['name'], description=value['description'], price=value['price'],
+                               quantity=value['quantity'])
 
     @property
     def price(self):
@@ -47,7 +48,6 @@ class Product:
         '''
         if value <= 0:
             print(Fore.RED + f'\nНедопустимое значение цены{Fore.RESET}{Fore.GREEN}\n')
-
         elif value < self._price:
             confirm = input("Вы действительно хотите понизить цену? (y/n): ").lower()
             if confirm == "y":
@@ -58,5 +58,8 @@ class Product:
             self._price = value
 
     def __repr__(self):
-        return f'{self.name}, {self.description}, {self._price}, {self.quantity}'
-
+        return (f'{Fore.RED}Имя класса: {self.__class__.__name__},\n'
+                f'Имя продукта, заданного при инициализации класса: {self.name},\n'
+                f'Описание продукта: {self.description},\n'
+                f'Цена: {self._price},\n '
+                f'Количество: {self.quantity}{Fore.RESET}')

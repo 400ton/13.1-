@@ -31,11 +31,12 @@ def test_init(test_data):
 
 
 def test_create(test_data):
-    product = Product.create_product('Category 1', 'Description 1', 100000.0, 1, test_data['products'])
-    product_2 = Product.create_product('Product 1', 'Description 1', 10000.0, 1, test_data['products'])
-    assert product == {'name': 'Category 1', 'description': 'Description 1', 'price': 100000.0, 'quantity': 1}
-    assert product['name'] == 'Category 1'
-    assert product_2 == {'name': 'Product 1', 'description': 'Description 1', 'price': 10000.0, 'quantity': 1}
+
+    product = Product('Product 1', 'Description 1', 100000.0, 1)
+    new_product = Product.create_product('Product 2', 'Description 2', 200000.0, 2, test_data['products'])
+    print(new_product)
+    product_2 = Product.create_product('Product 2', 'Description 2', 10000.0, 1,test_data['products'])
+
 
 
 def test_price(test_data):
@@ -58,7 +59,16 @@ def test_price(test_data):
 
 def test_repr_product(test_data):
     products = test_data['products']
-    for product in products:
-        product_instance = Product(product['name'], product['description'], product['price'], product['quantity'])
-        assert repr(
-            product_instance) == f'{product_instance.name}, {product_instance.description}, {product_instance.price}, {product_instance.quantity}'
+
+    product_in = Product(products[0]['name'], products[0]['description'], products[0]['price'],
+                         products[0]['quantity'])
+
+    product_in_1 = Product(products[1]['name'], products[1]['description'], products[1]['price'],
+                           products[0]['quantity'])
+
+    product_in_2 = Product(products[2]['name'], products[2]['description'], products[2]['price'],
+                           products[0]['quantity'])
+
+    assert repr(product_in) == 'Product, Product 1, Description 1, 100000.0, 1'
+    assert repr(product_in_1) == 'Product, Product 2, Description 2, 200000.0, 1'
+    assert repr(product_in_2) == 'Product, Product 3, Description 3, 300000.0, 1'
