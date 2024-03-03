@@ -3,9 +3,7 @@ from src.class_product import Product
 
 
 class Category:
-    '''
-    Класс категории для списка продуктов
-    '''
+    """Класс категории для списка продуктов"""
 
     total_categories = 0
     total_products = 0
@@ -31,10 +29,9 @@ class Category:
 
     @goods.setter
     def goods(self, product):
-        '''
-        Функция добавления продукта в категорию
-        :param объект класса Product:
-        '''
+        """Функция добавления продукта в категорию
+        :param объект класса:
+        """
         if isinstance(product, Product):
             self.__goods.append(product)
             Category.total_products += 1
@@ -46,4 +43,3 @@ class Category:
                 f'Название категории, заданной при инициализации класса: {self.name},\n'
                 f'Описание категории: {self.description},\n'
                 f'Список продуктов: {self.__goods}{Fore.RESET}')
-

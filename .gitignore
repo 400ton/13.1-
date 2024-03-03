@@ -16340,3 +16340,4 @@ tags
 nohup.out
 
 !/src/
+!/src/class_smartpfone.py

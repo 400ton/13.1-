@@ -2,13 +2,12 @@ from colorama import *
 
 
 class Product:
-    '''
-    Класс для продуктов
-    '''
+    """Класс для продуктов"""
 
-    def __init__(self, name: str, description: str, price: float, quantity: int):
+    def __init__(self, name: str, description: str, color: str, price: float, quantity: int):
         self.name = name
         self.description = description
+        self.color = color
         self._price = price
         self.quantity = quantity
 
@@ -19,6 +18,8 @@ class Product:
 
     def __add__(self, other):
         result = (self._price * self.quantity) + (other.price * other.quantity)
+        if not isinstance(other, type(self)):
+            raise TypeError("Cannot add products of different types")
         return result
 
     @classmethod
@@ -28,14 +29,15 @@ class Product:
         """
         for value in products:
             if value['name'] == name:
+                value['description'] = description
                 if value['price'] <= price:
                     value['price'] = price
                     value['quantity'] += quantity
-                    return cls(name=value['name'], description=value['description'], price=value['price'],
-                               quantity=value['quantity'])
+                    return cls(name=value['name'], description=value['description'], color=value[''],
+                               price=value['price'], quantity=value['quantity'])
                 else:
-                    return cls(name=value['name'], description=value['description'], price=value['price'],
-                               quantity=value['quantity'])
+                    return cls(name=value['name'], description=value['description'], color=value[''],
+                               price=value['price'], quantity=value['quantity'])
 
     @property
     def price(self):
@@ -43,9 +45,7 @@ class Product:
 
     @price.setter
     def price(self, value: float):
-        '''
-        Функция проверки и понижение цены продукта
-        '''
+        """Функция проверки и понижение цены продукта"""
         if value <= 0:
             print(Fore.RED + f'\nНедопустимое значение цены{Fore.RESET}{Fore.GREEN}\n')
         elif value < self._price:
@@ -61,5 +61,5 @@ class Product:
         return (f'{Fore.RED}Имя класса: {self.__class__.__name__},\n'
                 f'Имя продукта, заданного при инициализации класса: {self.name},\n'
                 f'Описание продукта: {self.description},\n'
-                f'Цена: {self._price},\n '
-                f'Количество: {self.quantity}{Fore.RESET}')
+                f'Цена: {self._price},\n'
+                f'Количество:{self.quantity}{Fore.RESET}\n\n')
