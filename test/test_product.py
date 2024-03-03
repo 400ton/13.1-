@@ -31,35 +31,22 @@ def test_init(test_data):
 
 
 def test_create(test_data):
-
     product = Product('Product 1', 'Description 1', 100000.0, 1)
     new_product = Product.create_product('Product 2', 'Description 2', 200000.0, 2, test_data['products'])
-    print(new_product)
-    product_2 = Product.create_product('Product 2', 'Description 2', 10000.0, 1,test_data['products'])
-
-
-
-def test_price(test_data):
-    product = test_data['products']
-    add_product = Product(product[0]['name'], product[0]['description'], product[0]['price'], product[0]['quantity'])
-
-    assert add_product.price == 100000.0
-    assert add_product.price != 0
-    assert add_product.price != str
+    product_2 = Product.create_product('Product 2', 'Description 2', 10000.0, 1, test_data['products'])
 
 
 def test_price(test_data):
     product = Product.create_product("Product 1", "Description 1", 100000.0, 1, test_data['products'])
-    assert product['price'] == 100000.0
-    product['price'] = 200000.0
-    assert product['price'] == 200000.0
-    product['price'] = 90000.0
-    assert product['price'] != 100000.0
+    assert product.price == 100000.0
+    product.price = 200000.0
+    assert product.price == 200000.0
+    product.price = 1000.0
+    assert product.price == 1000.0
 
 
 def test_repr_product(test_data):
     products = test_data['products']
-
     product_in = Product(products[0]['name'], products[0]['description'], products[0]['price'],
                          products[0]['quantity'])
 
