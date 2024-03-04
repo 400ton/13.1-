@@ -1,4 +1,5 @@
 import pytest
+from unittest import mock
 from src.class_product import Product
 
 
@@ -8,14 +9,17 @@ def test_data():
             "description": "Description 1",
             "products": [{"name": "Product 1",
                           "description": "Description 1",
+                          "color": "Color 1",
                           "price": 100000.0,
                           "quantity": 1},
                          {"name": "Product 2",
                           "description": "Description 2",
+                          "color": "Color 2",
                           "price": 200000.0,
                           "quantity": 2},
                          {"name": "Product 3",
                           "description": "Description 3",
+                          "color": "Color 3",
                           "price": 300000.0,
                           "quantity": 3}]}
 
@@ -26,36 +30,37 @@ def test_init(test_data):
         product_instance = Product(**product)
         assert product_instance.name == product['name']
         assert product_instance.description == product['description']
+        assert product_instance.color == product['color']
         assert product_instance.price == product['price']
         assert product_instance.quantity == product['quantity']
 
 
-def test_create(test_data):
-    product = Product('Product 1', 'Description 1', 100000.0, 1)
-    new_product = Product.create_product('Product 2', 'Description 2', 200000.0, 2, test_data['products'])
-    product_2 = Product.create_product('Product 2', 'Description 2', 10000.0, 1, test_data['products'])
+def test_create_product(test_data):
+    products = test_data['products']
+    new_product = Product.create_product('Nokia', 'клевый', 'черный', 10000, 1, products)
+    assert (new_product.name == 'Nokia' and new_product.description == 'клевый' and new_product.color == 'черный'
+            and new_product.price == 10000 and new_product.quantity == 1)
+
+    product_2 = Product.create_product('Siemens', 'клевый', 'черный', 20000, 1, products)
+    assert (product_2.name == 'Siemens' and product_2.description == 'клевый' and product_2.color == 'черный'
+            and product_2.price == 20000 and product_2.quantity == 1)
 
 
 def test_price(test_data):
-    product = Product.create_product("Product 1", "Description 1", 100000.0, 1, test_data['products'])
-    assert product.price == 100000.0
-    product.price = 200000.0
-    assert product.price == 200000.0
-    product.price = 1000.0
-    assert product.price == 1000.0
+    products = test_data['products']
+    product = Product.create_product("Product 1", "Description 1", "Color 1", 100000.0, 1, products)
+    with mock.patch('builtins.input', return_value='y'):
+        product.price = 200000.0
+        assert product.price == 200000.0
+        product.price = 1000.0
+        assert product.price == 1000.0
 
 
 def test_repr_product(test_data):
     products = test_data['products']
-    product_in = Product(products[0]['name'], products[0]['description'], products[0]['price'],
-                         products[0]['quantity'])
+    test_product = Product(**products[0])
+    assert repr(test_product) == 'Product, Product 1, Description 1, Color 1, 100000.0, 1'
 
-    product_in_1 = Product(products[1]['name'], products[1]['description'], products[1]['price'],
-                           products[0]['quantity'])
+    test_product_2 = Product(**products[1])
+    assert repr(test_product_2) == 'Product, Product 2, Description 2, Color 2, 200000.0, 2'
 
-    product_in_2 = Product(products[2]['name'], products[2]['description'], products[2]['price'],
-                           products[0]['quantity'])
-
-    assert repr(product_in) == 'Product, Product 1, Description 1, 100000.0, 1'
-    assert repr(product_in_1) == 'Product, Product 2, Description 2, 200000.0, 1'
-    assert repr(product_in_2) == 'Product, Product 3, Description 3, 300000.0, 1'

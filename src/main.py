@@ -5,29 +5,6 @@ from src.class_product import Product
 from src.class_smartpfone import Smartphone
 from src.class_lawn_grass import LawnGrass
 
-sm = Smartphone('Nokia', 'клевый', 'черный', 10000, 1, 1.1, 'auto', 16)
-# sm_2 = Smartphone('Siemens', 'клевый', 'черный', 20000, 1, 1.1, 'auto', 16)
-# lg = LawnGrass('Трава', 'зеленая', 'зеленый', 10000, 1, 'ru', 10)
-
-
-category = Category('smart phone', 'smartphone', [])
-product = Product('smartphone', 'smartphone', 'smartphone', 1, 1,)
-d = {
-        "name": "Samsung Galaxy C23 Ultra",
-        "description": "256GB, Серый цвет, 200MP камера",
-        "price": 180000.0,
-        "quantity": 5
-      }
-
-print(category.goods)
-category.goods = sm
-
-print(category.goods)
-
-category.goods = d
-print(category.goods)
-
-
 
 # def main():
 #     '''

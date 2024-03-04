@@ -23,21 +23,19 @@ class Product:
         return result
 
     @classmethod
-    def create_product(cls, name: str, description: str, price: float, quantity: int, products: list):
-        """
-        Функция создания нового продукта
-        """
+    def create_product(cls, name: str, description: str, color: str, price: float, quantity: int, products: list):
+        """Функция создания нового продукта"""
         for value in products:
             if value['name'] == name:
+                value['color'] = color
                 value['description'] = description
                 if value['price'] <= price:
                     value['price'] = price
                     value['quantity'] += quantity
-                    return cls(name=value['name'], description=value['description'], color=value[''],
+                    return cls(name=value['name'], description=value['description'], color=value['color'],
                                price=value['price'], quantity=value['quantity'])
-                else:
-                    return cls(name=value['name'], description=value['description'], color=value[''],
-                               price=value['price'], quantity=value['quantity'])
+            else:
+                return cls(name=name, description=description, color=color, price=price, quantity=quantity)
 
     @property
     def price(self):
@@ -58,8 +56,5 @@ class Product:
             self._price = value
 
     def __repr__(self):
-        return (f'{Fore.RED}Имя класса: {self.__class__.__name__},\n'
-                f'Имя продукта, заданного при инициализации класса: {self.name},\n'
-                f'Описание продукта: {self.description},\n'
-                f'Цена: {self._price},\n'
-                f'Количество:{self.quantity}{Fore.RESET}\n\n')
+        return (f'{self.__class__.__name__}, {self.name}, {self.description}, {self.color}, '
+                f'{self._price}, {self.quantity}')

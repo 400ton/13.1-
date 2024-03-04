@@ -9,3 +9,4 @@ class Smartphone(Product):
         self.model = model
         self.amount_memory = amount_memory
 
+
