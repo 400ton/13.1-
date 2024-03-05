@@ -9,4 +9,8 @@ class Smartphone(Product):
         self.model = model
         self.amount_memory = amount_memory
 
+    def __str__(self):
+        pass
 
+    def __repr__(self):
+        pass
