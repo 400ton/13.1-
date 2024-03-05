@@ -17,9 +17,9 @@ class Product:
                f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт"
 
     def __add__(self, other):
-        result = (self._price * self.quantity) + (other.price * other.quantity)
         if not isinstance(other, type(self)):
-            raise TypeError("Cannot add products of different types")
+            raise TypeError('Невозможно добавить товары разных типов')
+        result = (self._price * self.quantity) + (other.price * other.quantity)
         return result
 
     @classmethod
