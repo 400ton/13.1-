@@ -8,3 +8,9 @@ class LawnGrass(Product):
         super().__init__(name, description, color, price, quantity)
         self.manufacturer = manufacturer
         self.germination_period = germination_period
+
+    def __str__(self):
+        pass 
+
+    def __repr__(self) :
+        pass
