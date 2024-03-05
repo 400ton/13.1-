@@ -1,7 +1,8 @@
 from colorama import *
+from src.class_abstract_mixin import Abstract, MixinRepr
 
 
-class Product:
+class Product(MixinRepr, Abstract):
     """Класс для продуктов"""
 
     def __init__(self, name: str, description: str, color: str, price: float, quantity: int):
@@ -15,6 +16,7 @@ class Product:
         return f"{Fore.CYAN}{self.name}{Fore.RESET}, " \
                f"{self._price} {Fore.GREEN}руб. " \
                f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт"
+
 
     def __add__(self, other):
         if not isinstance(other, type(self)):
@@ -56,5 +58,5 @@ class Product:
             self._price = value
 
     def __repr__(self):
-        return (f'{self.__class__.__name__}, {self.name}, {self.description}, {self.color}, '
-                f'{self._price}, {self.quantity}')
+        return (f'Class name: {self.__class__.__name__}, Name: {self.name}, Description: {self.description}, '
+                f'Color: {self.color}, Price: {self.price}, Quantity: {self.quantity}')

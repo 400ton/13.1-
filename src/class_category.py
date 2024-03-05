@@ -39,4 +39,5 @@ class Category:
             raise ValueError("Продукт должен быть объектом класса Product")
 
     def __repr__(self):
-        return f'{self.__class__.__name__}, {self.name}, {self.description}, {self.__goods}'
+        return (f'Class name: {self.__class__.__name__}, Name: {self.name}, Description: {self.description}, '
+                f'Goods: {self.__goods}')

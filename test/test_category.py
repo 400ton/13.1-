@@ -63,30 +63,55 @@ def test_add_goods(test_data):
 
 def test_repr(test_data):
     category = Category(test_data["name"], test_data["description"], test_data["products"])
-    assert repr(category) == f'Category, Category 1, Description 1, {test_data["products"]}'
+    assert repr(
+        category) == f'Class name: Category, Name: Category 1, Description: Description 1, Goods: {test_data["products"]}'
 
 
 # Тестируем класс Lawn_Grass
+@pytest.fixture
+def test_grass():
+    grass = LawnGrass('Трава', 'Трава зеленая', 'зеленый', 10000, 1, 'ru', 10)
+    return grass
 
-def test_init_lawn_grass(test_data):
-    lg = LawnGrass('Трава', 'Трава зеленая', 'зеленый', 10000, 1, 'ru', 10)
-    assert lg.name == 'Трава'
-    assert lg.description == 'Трава зеленая'
-    assert lg.color == 'зеленый'
-    assert lg.price == 10000
-    assert lg.quantity == 1
-    assert lg.manufacturer == 'ru'
-    assert lg.germination_period == 10
+
+def test_init_lawn_grass(test_grass):
+    assert test_grass.name == 'Трава'
+    assert test_grass.description == 'Трава зеленая'
+    assert test_grass.color == 'зеленый'
+    assert test_grass.price == 10000
+    assert test_grass.quantity == 1
+    assert test_grass.manufacturer == 'ru'
+    assert test_grass.germination_period == 10
+
+
+def test_str_lawn_Grass(test_grass):
+    assert str(test_grass) == test_grass.__str__()
+
+
+def test_repr_lawn_grass(test_grass):
+    assert repr(test_grass) == test_grass.__repr__()
 
 
 # Тестируем класс Smartphone
+@pytest.fixture
+def test_smartphone():
+    smart = Smartphone('Samsung', 'Samsung Galaxy S20', 'зеленый', 100000.0, 1, 10, 'Samsung Galaxy S20', 128)
+    return smart
 
-def test_init_smartphone(test_data):
-    sm = Smartphone('Samsung', 'Samsung Galaxy S20', 'зеленый', 100000.0, 1, 10, 'Samsung Galaxy S20', 128)
-    assert sm.name == 'Samsung'
-    assert sm.color == 'зеленый'
-    assert sm.price == 100000.0
-    assert sm.quantity == 1
-    assert sm.performance == 10
-    assert sm.model == 'Samsung Galaxy S20'
-    assert sm.amount_memory == 128
+
+def test_init_smartphone(test_smartphone):
+    assert test_smartphone.name == 'Samsung'
+    assert test_smartphone.color == 'зеленый'
+    assert test_smartphone.price == 100000.0
+    assert test_smartphone.quantity == 1
+    assert test_smartphone.performance == 10
+    assert test_smartphone.model == 'Samsung Galaxy S20'
+    assert test_smartphone.amount_memory == 128
+
+
+def test_str_smartphone(test_smartphone):
+    assert str(test_smartphone) == test_smartphone.__str__()
+
+
+def test_repr_smartphone(test_smartphone):
+    assert repr(test_smartphone) == test_smartphone.__repr__()

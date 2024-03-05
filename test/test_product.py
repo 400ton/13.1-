@@ -59,8 +59,9 @@ def test_price(test_data):
 def test_repr_product(test_data):
     products = test_data['products']
     test_product = Product(**products[0])
-    assert repr(test_product) == 'Product, Product 1, Description 1, Color 1, 100000.0, 1'
+    assert repr(test_product) == test_product.__repr__()
 
     test_product_2 = Product(**products[1])
-    assert repr(test_product_2) == 'Product, Product 2, Description 2, Color 2, 200000.0, 2'
+    assert repr(test_product_2) == ('Class name: Product, Name: Product 2, Description: Description 2, Color: Color 2, '
+                                    'Price: 200000.0, Quantity: 2')
 

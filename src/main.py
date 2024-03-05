@@ -5,6 +5,26 @@ from src.class_product import Product
 from src.class_smartpfone import Smartphone
 from src.class_lawn_grass import LawnGrass
 
+pr = Product('Nokia', 'клевый', 'черный', 10000, 1)
+pr_2 = Product('Siemens', 'клевый', 'черный', 20000, 1)
+
+sm = Smartphone('Nokia', 'клевый', 'черный', 10000, 1, 2.2, 'Nokia', 128)
+sm_2 = Smartphone('Siemens', 'клевый', 'черный', 20000, 1,2.5, 'Siemens', 128)
+lg = LawnGrass('Grass', 'green', 'green', 5000, 1, 'russian', 2)
+lst = {"name": "Samsung Galaxy C23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 5}
+
+print(pr)
+print(pr_2)
+
+print(sm)
+print(sm_2)
+
+print(lg)
+
+
 
 # def main():
 #     '''
