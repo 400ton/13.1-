@@ -1,8 +1,9 @@
 from colorama import *
 from src.class_product import Product
+from src.class_abstract_and_mixin import MixinRepr
 
 
-class Category:
+class Category(MixinRepr):
     """Класс категории для списка продуктов"""
 
     total_categories = 0
@@ -12,6 +13,7 @@ class Category:
         self.name = name
         self.description = description
         self.__goods = goods
+        super().__init__()
 
         Category.total_categories += 1
         Category.total_products += len(self.__goods)
@@ -39,5 +41,5 @@ class Category:
             raise ValueError("Продукт должен быть объектом класса Product")
 
     def __repr__(self):
-        return (f'Class name: {self.__class__.__name__}, Name: {self.name}, Description: {self.description}, '
-                f'Goods: {self.__goods}')
+        return (f'Создан класс: {self.__class__.__name__} с атрибутами (name: {self.name}, '
+                f'description: {self.description}, goods: {self.__goods}\n')

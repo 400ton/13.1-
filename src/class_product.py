@@ -1,5 +1,5 @@
 from colorama import *
-from src.class_abstract_mixin import Abstract, MixinRepr
+from src.class_abstract_and_mixin import Abstract, MixinRepr
 
 
 class Product(MixinRepr, Abstract):
@@ -11,9 +11,10 @@ class Product(MixinRepr, Abstract):
         self.color = color
         self._price = price
         self.quantity = quantity
+        super().__init__(name, description, price, quantity)
 
     def __str__(self):
-        return f"\n{super().__repr__()}\n{Fore.CYAN}{self.name}{Fore.RESET}, " \
+        return f"{Fore.CYAN}{self.name}{Fore.RESET}, " \
                f"{self._price} {Fore.GREEN}руб. " \
                f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт{Fore.RESET}"
 
@@ -57,5 +58,6 @@ class Product(MixinRepr, Abstract):
             self._price = value
 
     def __repr__(self):
-        return (f'Class name: {self.__class__.__name__}, Name: {self.name}, Description: {self.description}, '
-                f'Color: {self.color}, Price: {self.price}, Quantity: {self.quantity}')
+        return (f'Создан класс: {self.__class__.__name__} с атрибутами (name: {self.name}, '
+                f'description: {self.description}, color: {self.color}, price: {self.price}, '
+                f'quantity: {self.quantity})\n')

@@ -18,11 +18,13 @@ class Abstract(ABC):
 
 
 class MixinRepr:
-    """Класс для расширения функциональности основных классов"""
+    """
+    Класс для расширения функциональности основных классов.
+    Выводит отладочную информацию о классе для разработчика.
+    """
     def __init__(self, *args, **kwargs):
         print(repr(self))
 
     def __repr__(self):
-        for key in self.__dict__:
-            return f'Создан обьект: {self.__class__.__name__} ({key} = {self.__dict__[key]})'
+        return f'Создан обьект: {self.__class__.__name__} ({self.__dict__.items()})'
 
