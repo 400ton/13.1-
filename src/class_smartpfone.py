@@ -16,7 +16,4 @@ class Smartphone(Product):
                 f'Производительность: {self.performance}\nМодель: {self.model},\nОбьем памяти: {self.amount_memory}\n')
 
     def __repr__(self):
-        return (f'Создан класс: {self.__class__.__name__} с атрибутами (name: {self.name}, '
-                f'description: {self.description}, color: {self.color}, price: {self.price}, '
-                f'quantity: {self.quantity}, performance: {self.performance}, '
-                f'model: {self.model}, amount memory: {self.amount_memory})\n')
+        return super().__repr__()

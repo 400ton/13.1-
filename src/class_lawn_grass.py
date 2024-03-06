@@ -15,6 +15,4 @@ class LawnGrass(Product):
                 f'Производитель: {self.manufacturer}\nПериод произрастания: {self.germination_period} дней')
 
     def __repr__(self):
-        return (f'Создан класс: {self.__class__.__name__} с атрибутами (name: {self.name}, '
-                f'description: {self.description}, color: {self.color}, price: {self.price}, quantity: {self.quantity}, '
-                f'manufacturer: {self.manufacturer}, germination period: {self.germination_period})\n')
+        return super().__repr__()

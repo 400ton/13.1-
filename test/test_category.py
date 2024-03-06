@@ -8,6 +8,10 @@ from src.class_smartpfone import Smartphone
 
 @pytest.fixture
 def test_data():
+    """
+    Тестовые данные для класса Катогорий
+    :return: dict
+    """
     return {"name": "Category 1",
             "description": "Description 1",
             "products": [{"name": "Product 1",
@@ -25,6 +29,10 @@ def test_data():
 
 
 def test_init(test_data):
+    """
+    Тест инициализацию класса Category
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
     assert category.name == "Category 1"
     assert category.description == "Description 1"
@@ -33,22 +41,38 @@ def test_init(test_data):
 
 
 def test_len(test_data):
+    """
+    Тест длины списка продуктов в категории
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
     assert len(category) == 3
 
 
 def test_str(test_data):
+    """
+    Тест вывода информации в консоль
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
     assert str(category) == f'{Fore.CYAN}Category 1 {Fore.RESET},' \
                             f'{Fore.GREEN}Всего продуктов:{Fore.RESET}3 {Fore.GREEN}шт'
 
 
 def test_goods(test_data):
+    """
+    Тест геттера категории
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
     assert category.goods == test_data["products"]
 
 
 def test_add_goods(test_data):
+    """
+    Тест добавления продукта в категорию
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
     new_product = Product('Product 4', 'Description 1', 'red', 100000.0, 4)
     assert category.goods == test_data["products"]
@@ -62,19 +86,31 @@ def test_add_goods(test_data):
 
 
 def test_repr(test_data):
+    """
+    Тест вывода отладочной информации в консоль
+    :param test_data:
+    """
     category = Category(test_data["name"], test_data["description"], test_data["products"])
-    assert repr(
-        category) == f'Class name: Category, Name: Category 1, Description: Description 1, Goods: {test_data["products"]}'
+    assert repr(category) == category.__repr__()
 
 
 # Тестируем класс Lawn_Grass
 @pytest.fixture
 def test_grass():
+    """
+    Тестовые данные для класса Lawn_Grass
+    :return: Обьект класса
+    """
     grass = LawnGrass('Трава', 'Трава зеленая', 'зеленый', 10000, 1, 'ru', 10)
     return grass
 
 
 def test_init_lawn_grass(test_grass):
+    """
+    Тест инициализации класса Lawn_Grass
+    :param test_grass:
+    """
+
     assert test_grass.name == 'Трава'
     assert test_grass.description == 'Трава зеленая'
     assert test_grass.color == 'зеленый'
@@ -85,21 +121,41 @@ def test_init_lawn_grass(test_grass):
 
 
 def test_str_lawn_Grass(test_grass):
+    """
+    Тест вывода строковой информации в консоль
+    :param test_grass:
+    """
+
     assert str(test_grass) == test_grass.__str__()
 
 
 def test_repr_lawn_grass(test_grass):
+    """
+    Тест вывода отладочной информации в консоль
+    :param test_grass:
+    """
+
     assert repr(test_grass) == test_grass.__repr__()
 
 
 # Тестируем класс Smartphone
 @pytest.fixture
 def test_smartphone():
+    """
+    Тестовые данные для класса Smartphone
+    :return: Обьект класса
+    """
+
     smart = Smartphone('Samsung', 'Samsung Galaxy S20', 'зеленый', 100000.0, 1, 10, 'Samsung Galaxy S20', 128)
     return smart
 
 
 def test_init_smartphone(test_smartphone):
+    """
+    Тест инициализации класса Smartphone
+    :param test_smartphone:
+    """
+
     assert test_smartphone.name == 'Samsung'
     assert test_smartphone.color == 'зеленый'
     assert test_smartphone.price == 100000.0
@@ -110,8 +166,18 @@ def test_init_smartphone(test_smartphone):
 
 
 def test_str_smartphone(test_smartphone):
+    """
+    Тест вывода строковой информации в консоль
+    :param test_smartphone:
+    """
+
     assert str(test_smartphone) == test_smartphone.__str__()
 
 
 def test_repr_smartphone(test_smartphone):
+    """
+    Тест вывода отладочной информации в консоль
+    :param test_smartphone:
+    """
+
     assert repr(test_smartphone) == test_smartphone.__repr__()

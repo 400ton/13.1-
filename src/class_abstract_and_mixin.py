@@ -26,5 +26,5 @@ class MixinRepr:
         print(repr(self))
 
     def __repr__(self):
-        return f'Создан обьект: {self.__class__.__name__} ({self.__dict__.items()})'
+        return f'\nСоздан класс: {self.__class__.__name__} с атрибутами {self.__dict__}'
 

@@ -3,9 +3,18 @@ from src.class_abstract_and_mixin import Abstract, MixinRepr
 
 
 class Product(MixinRepr, Abstract):
-    """Класс для продуктов"""
-
+    """
+    Класс для продуктов
+    """
     def __init__(self, name: str, description: str, color: str, price: float, quantity: int):
+        """
+        Конструктор класса
+        :param name:
+        :param description:
+        :param color:
+        :param price:
+        :param quantity:
+        """
         self.name = name
         self.description = description
         self.color = color
@@ -14,11 +23,20 @@ class Product(MixinRepr, Abstract):
         super().__init__(name, description, price, quantity)
 
     def __str__(self):
+        """
+        Функция вывода строковой информации о продукте
+        :return: string
+        """
         return f"{Fore.CYAN}{self.name}{Fore.RESET}, " \
                f"{self._price} {Fore.GREEN}руб. " \
                f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт{Fore.RESET}"
 
     def __add__(self, other):
+        """
+        Функция сложения обьектов одного класса
+        :param other:
+        :return: float
+        """
         if type(other) is not type(self):
             raise TypeError('Невозможно добавить товары разных типов')
         result = (self._price * self.quantity) + (other.price * other.quantity)
@@ -26,7 +44,16 @@ class Product(MixinRepr, Abstract):
 
     @classmethod
     def create_product(cls, name: str, description: str, color: str, price: float, quantity: int, products: list):
-        """Функция создания нового продукта"""
+        """
+        Функция создания нового продукта
+        :param name:
+        :param description:
+        :param color:
+        :param price:
+        :param quantity:
+        :param products:
+        :return: dictionary
+        """
         for value in products:
             if value['name'] == name:
                 value['color'] = color
@@ -41,11 +68,19 @@ class Product(MixinRepr, Abstract):
 
     @property
     def price(self):
+        """
+        Функция возвращения цены продукта
+        :return: float
+        """
         return self._price
 
     @price.setter
     def price(self, value: float):
-        """Функция проверки и понижение цены продукта"""
+        """
+        Функция проверки и понижение цены продукта"
+        :param value:
+        :return: float
+        """
         if value <= 0:
             print(Fore.RED + f'\nНедопустимое значение цены{Fore.RESET}{Fore.GREEN}\n')
         elif value < self._price:
@@ -58,6 +93,8 @@ class Product(MixinRepr, Abstract):
             self._price = value
 
     def __repr__(self):
-        return (f'Создан класс: {self.__class__.__name__} с атрибутами (name: {self.name}, '
-                f'description: {self.description}, color: {self.color}, price: {self.price}, '
-                f'quantity: {self.quantity})\n')
+        """
+        Функция вывода отладочной информации о продукте
+        :return: string
+        """
+        return super().__repr__()
