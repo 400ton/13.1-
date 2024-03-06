@@ -56,9 +56,6 @@ def test_add_product(test_data):
     assert 'Невозможно добавить товары разных типов' in str(excinfo.value)
 
 
-
-
-
 def test_create_product(test_data):
     products = test_data['products']
     new_product = Product.create_product('Nokia', 'клевый', 'черный', 10000, 1, products)
