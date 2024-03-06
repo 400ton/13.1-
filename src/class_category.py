@@ -62,7 +62,7 @@ class Category(MixinRepr):
 
     def __repr__(self):
         """
-        Функция вывода отладочной информации о категории
+        Функция вывода отладочной информации о классе
         :return: string
         """
         return super().__repr__()
