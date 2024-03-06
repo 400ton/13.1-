@@ -1,4 +1,5 @@
 import pytest
+from colorama import Fore
 from unittest import mock
 from src.class_product import Product
 
@@ -24,7 +25,7 @@ def test_data():
                           "quantity": 3}]}
 
 
-def test_init(test_data):
+def test_init_product(test_data):
     products = test_data['products']
     for product in products:
         product_instance = Product(**product)
@@ -33,6 +34,29 @@ def test_init(test_data):
         assert product_instance.color == product['color']
         assert product_instance.price == product['price']
         assert product_instance.quantity == product['quantity']
+
+
+def test_str_product(test_data):
+    products = test_data['products']
+    test_product = Product(**products[0])
+    assert str(test_product) == test_product.__str__()
+    assert str(test_product) == (f'\nСоздан обьект: Product (name = Product 1)\n{Fore.CYAN}Product 1{Fore.RESET}, '
+                                 f'100000.0 {Fore.GREEN}руб. '
+                                 f'Остаток:{Fore.RESET} 1 {Fore.GREEN}шт{Fore.RESET}')
+
+
+def test_add_product(test_data):
+    products = test_data['products']
+    test_product = Product(**products[0])
+    test_product_2 = Product(**products[1])
+
+    assert test_product + test_product_2 == 500000.0
+    with pytest.raises(TypeError) as excinfo:
+        test_product + [*products]
+    assert 'Невозможно добавить товары разных типов' in str(excinfo.value)
+
+
+
 
 
 def test_create_product(test_data):
@@ -64,4 +88,3 @@ def test_repr_product(test_data):
     test_product_2 = Product(**products[1])
     assert repr(test_product_2) == ('Class name: Product, Name: Product 2, Description: Description 2, Color: Color 2, '
                                     'Price: 200000.0, Quantity: 2')
-
