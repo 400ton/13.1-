@@ -13,13 +13,12 @@ class Product(MixinRepr, Abstract):
         self.quantity = quantity
 
     def __str__(self):
-        return f"{Fore.CYAN}{self.name}{Fore.RESET}, " \
+        return f"\n{super().__repr__()}\n{Fore.CYAN}{self.name}{Fore.RESET}, " \
                f"{self._price} {Fore.GREEN}руб. " \
-               f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт"
-
+               f"Остаток:{Fore.RESET} {self.quantity} {Fore.GREEN}шт{Fore.RESET}"
 
     def __add__(self, other):
-        if not isinstance(other, type(self)):
+        if type(other) is not type(self):
             raise TypeError('Невозможно добавить товары разных типов')
         result = (self._price * self.quantity) + (other.price * other.quantity)
         return result

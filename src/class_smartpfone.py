@@ -11,7 +11,7 @@ class Smartphone(Product):
         self.amount_memory = amount_memory
 
     def __str__(self):
-        return (f'\nИмя продукта: {self.name},\nОписание: {self.description},\n'
+        return (f'\n{super().__repr__()}\nИмя продукта: {self.name},\nОписание: {self.description},\n'
                 f'Цвет: {self.color},\nЦена: {self.price},\nКоличество: {self.quantity},\n'
                 f'Производительность: {self.performance}\nМодель: {self.model},\nОбьем памяти: {self.amount_memory}\n')
 
