@@ -23,7 +23,6 @@ class Smartphone(Product):
         self.model = model
         self.amount_memory = amount_memory
 
-
     @classmethod
     def create_product(cls, products, **kwargs):
         """
