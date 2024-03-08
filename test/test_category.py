@@ -120,6 +120,33 @@ def test_init_lawn_grass(test_grass):
     assert test_grass.germination_period == 10
 
 
+def test_create_lawn_grass(test_grass):
+    """
+    Тест создания продукта класса Lawn_Grass
+    :param test_grass:
+    """
+    date = [{'name': 'Трава ',
+             'description': 'Трава зеленая',
+             'color': 'зеленый',
+             'price': 10000,
+             'quantity': 1,
+             'manufacturer': 'ru',
+             'germination_period': 10}]
+
+    grass = {'name': 'Трава 1',
+             'description': 'Трава зеленая 1',
+             'color': 'зеленый',
+             'price': 10000,
+             'quantity': 1,
+             'manufacturer': 'ru',
+             'germination_period': 10}
+
+    new_grass = LawnGrass.create_product(date, **grass)
+    assert (new_grass.name == 'Трава 1' and new_grass.description == 'Трава зеленая 1', new_grass.color == 'зеленый',
+            new_grass.price == 10000, new_grass.quantity == 1, new_grass.manufacturer == 'ru',
+            new_grass.germination_period == 10)
+
+
 def test_str_lawn_Grass(test_grass):
     """
     Тест вывода строковой информации в консоль
@@ -163,6 +190,23 @@ def test_init_smartphone(test_smartphone):
     assert test_smartphone.performance == 10
     assert test_smartphone.model == 'Samsung Galaxy S20'
     assert test_smartphone.amount_memory == 128
+
+
+def teat_create_smartphone(test_smartphone):
+    """
+    Тест создания продукта класса Smartphone
+    :param test_smartphone:
+    :return:
+    """
+    lst = [{"name": "Samsung Galaxy C23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0,
+            "quantity": 5}]
+
+    new_smartphone = Smartphone.create_product(lst, **test_smartphone)
+    assert (new_smartphone.name == 'Samsung Galaxy C23 Ultra', new_smartphone.color == 'зеленый',
+            new_smartphone.price == 180000.0, new_smartphone.quantity == 5, new_smartphone.performance == 10,
+            new_smartphone.model == 'Samsung Galaxy S20')
 
 
 def test_str_smartphone(test_smartphone):

@@ -76,13 +76,15 @@ def test_create_product(test_data):
     Тест функции создания товара
     :param test_data:
     """
-    new_product = Product.create_product('Nokia', 'клевый', 'черный', 10000, 1, test_data)
-    assert (new_product.name == 'Nokia' and new_product.description == 'клевый' and new_product.color == 'черный'
-            and new_product.price == 10000 and new_product.quantity == 1)
+    date = {"name": "Nokia",
+            "description": "клевый",
+            "color": "черный",
+            "price": 180000.0,
+            "quantity": 5}
 
-    product_2 = Product.create_product('Siemens', 'клевый', 'черный', 20000, 1, test_data)
-    assert (product_2.name == 'Siemens' and product_2.description == 'клевый' and product_2.color == 'черный'
-            and product_2.price == 20000 and product_2.quantity == 1)
+    new_product = Product.create_product(test_data, **date)
+    assert (new_product.name == 'Nokia' and new_product.description == 'клевый' and new_product.color == 'черный'
+            and new_product.price == 180000.0 and new_product.quantity == 5)
 
 
 def test_price(test_data):
@@ -90,12 +92,18 @@ def test_price(test_data):
     Тест функции изменения цены товара
     :param test_data:
     """
-    product = Product.create_product("Product 1", "Description 1", "Color 1", 100000.0, 1, test_data)
+    product = {"name": "Product 1",
+               "description": "Description 1",
+               "color": "Color 1",
+               "price": 100000.0,
+               "quantity": 1}
+
+    new_product = Product.create_product(test_data, **product)
     with mock.patch('builtins.input', return_value='y'):
-        product.price = 200000.0
-        assert product.price == 200000.0
-        product.price = 1000.0
-        assert product.price == 1000.0
+        new_product.price = 200000.0
+        assert new_product.price == 200000.0
+        new_product.price = 1000.0
+        assert new_product.price == 1000.0
 
 
 def test_repr_product(test_data):
@@ -109,4 +117,4 @@ def test_repr_product(test_data):
     test_product_2 = Product(**test_data[1])
     assert repr(test_product_2) == ("\nСоздан класс: Product с атрибутами {'name': 'Product 2', "
                                     "'description': 'Description 2', 'color': 'Color 2', "
-                                    "'_price': 200000.0, 'quantity': 2}")
+                                    "'_price': 200000.0, 'quantity': 2}\n")

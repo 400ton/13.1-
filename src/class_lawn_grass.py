@@ -17,9 +17,28 @@ class LawnGrass(Product):
         :param manufacturer:
         :param germination_period:
         """
+        super().__init__(name, description, color, price, quantity)
         self.manufacturer = manufacturer
         self.germination_period = germination_period
-        super().__init__(name, description, color, price, quantity)
+
+    @classmethod
+    def create_product(cls, products, **kwargs):
+        """
+        Создание продукта
+        :param products:
+        :param kwargs:
+        :return: dict
+        """
+        name = kwargs['name']
+        description = kwargs['description']
+        color = kwargs['color']
+        price = kwargs['price']
+        quantity = kwargs['quantity']
+        manufacturer = kwargs['manufacturer']
+        germination_period = kwargs['germination_period']
+
+        return cls(name=name, description=description, color=color, price=price, quantity=quantity,
+                   manufacturer=manufacturer, germination_period=germination_period)
 
     def __str__(self):
         """

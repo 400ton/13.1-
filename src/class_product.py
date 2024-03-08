@@ -6,6 +6,7 @@ class Product(MixinRepr, Abstract):
     """
     Класс для продуктов
     """
+
     def __init__(self, name: str, description: str, color: str, price: float, quantity: int):
         """
         Конструктор класса
@@ -20,7 +21,7 @@ class Product(MixinRepr, Abstract):
         self.color = color
         self._price = price
         self.quantity = quantity
-        super().__init__(name, description, price, quantity)
+        super().__init__()
 
     def __str__(self):
         """
@@ -43,28 +44,32 @@ class Product(MixinRepr, Abstract):
         return result
 
     @classmethod
-    def create_product(cls, name: str, description: str, color: str, price: float, quantity: int, products: list):
+    def create_product(cls, products, **kwargs,):
         """
         Функция создания нового продукта
-        :param name:
-        :param description:
-        :param color:
-        :param price:
-        :param quantity:
         :param products:
+        :param kwargs:
         :return: dictionary
         """
+        name = kwargs.get('name')
+        description = kwargs.get('description')
+        color = kwargs.get('color')
+        price = kwargs.get('price')
+        quantity = kwargs.get('quantity')
+
+        if products is None:
+            raise ValueError('Список продуктов не может быть пустым')
+
         for value in products:
-            if value['name'] == name:
+            if value['name'] != name:
                 value['color'] = color
                 value['description'] = description
                 if value['price'] <= price:
                     value['price'] = price
                     value['quantity'] += quantity
-                    return cls(name=value['name'], description=value['description'], color=value['color'],
-                               price=value['price'], quantity=value['quantity'])
+                    return cls(dict(**value))
             else:
-                return cls(name=name, description=description, color=color, price=price, quantity=quantity)
+                return cls(dict(**value))
 
     @property
     def price(self):
@@ -98,3 +103,14 @@ class Product(MixinRepr, Abstract):
         :return: string
         """
         return super().__repr__()
+
+
+# date = {"name": "Samsung Galaxy C23 Ultra",
+#         "description": "256GB, Серый цвет, 200MP камера",
+#         "Color": "Black",
+#         "price": 180000.0,
+#         "quantity": 5}
+#
+# Product.create_product(**date)
+# print(str(Product.create_product(**date)))
+

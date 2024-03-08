@@ -18,10 +18,31 @@ class Smartphone(Product):
         :param model:
         :param amount_memory:
         """
+        super().__init__(name, description, color, price, quantity)
         self.performance = performance
         self.model = model
         self.amount_memory = amount_memory
-        super().__init__(name, description, color, price, quantity)
+
+
+    @classmethod
+    def create_product(cls, products, **kwargs):
+        """
+        Создание продукта
+        :param products:
+        :param kwargs:
+        :return: dict
+        """
+        name = kwargs['name']
+        description = kwargs['description']
+        color = kwargs['color']
+        price = kwargs['price']
+        quantity = kwargs['quantity']
+        performance = kwargs['performance']
+        model = kwargs['model']
+        amount_memory = kwargs['amount_memory']
+
+        return cls(name=name, description=description, color=color, price=price, quantity=quantity,
+                   performance=performance, model=model, amount_memory=amount_memory)
 
     def __str__(self):
         """
