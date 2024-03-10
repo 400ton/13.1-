@@ -85,6 +85,22 @@ def test_add_goods(test_data):
     assert str(excinfo.value) == "Продукт должен быть объектом класса Product"
 
 
+def test_average_price_goods(test_data):
+    category = Category(test_data["name"], test_data["description"], test_data["products"])
+    assert category.average_price_goods() == 466666.7
+
+
+def test_average_price_goods_error():
+    data = [{"name": "Product 1",
+             "description": "Description 1",
+             "price": 100000.0,
+             "quantity": 0}]
+
+    category = Category('Nokia', 'good', data)
+    with pytest.raises(ZeroDivisionError) as e:
+        print(category.average_price_goods())
+
+
 def test_repr(test_data):
     """
     Тест вывода отладочной информации в консоль

@@ -39,12 +39,12 @@ class Category(MixinRepr):
         :return: string
         """
         return f'{Fore.CYAN}{self.name} {Fore.RESET},' \
-               f'{Fore.GREEN}Всего продуктов:{Fore.RESET}{len(self)} {Fore.GREEN}шт'
+               f'{Fore.GREEN}Всего продуктов:{Fore.RESET}{len(self.__goods)} {Fore.GREEN}шт'
 
     @property
     def goods(self):
         """Функция геттера для списка продуктов
-        :return: dictionary
+        :return: list of products
         """
         return self.__goods
 
@@ -53,7 +53,7 @@ class Category(MixinRepr):
         """Функция добавления продукта в список,
         продукт должен быть обьектом класса Product.
         :param product:
-        :return: dictionary
+        :return: list of products
         """
         if not isinstance(product, Product):
             raise ValueError("Продукт должен быть объектом класса Product")
@@ -63,6 +63,18 @@ class Category(MixinRepr):
         else:
             self.__goods.append(product)
             Category.total_products += 1
+
+    def average_price_goods(self):
+        """
+        Функция возвращает среднюю цену всех продуктов в категории
+        :return: float
+        """
+        total_price = sum(product['price'] * product['quantity'] for product in self.__goods)
+        total_products = 0
+        try:
+            return round(total_price / total_products, 1)
+        except ZeroDivisionError:
+            return
 
     def __repr__(self):
         """

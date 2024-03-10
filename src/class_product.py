@@ -44,7 +44,7 @@ class Product(MixinRepr, Abstract):
         return result
 
     @classmethod
-    def create_product(cls, products, **kwargs,):
+    def create_product(cls, products, **kwargs, ):
         """
         Функция создания нового продукта
         :param products:
@@ -67,9 +67,10 @@ class Product(MixinRepr, Abstract):
                 if value['price'] <= price:
                     value['price'] = price
                     value['quantity'] += quantity
-                    return cls(dict(**value))
+                    return cls(name=value['name'], description=value['description'], color=value['color'],
+                               price=value['price'], quantity=value['quantity'])
             else:
-                return cls(dict(**value))
+                return cls(**value)
 
     @property
     def price(self):
