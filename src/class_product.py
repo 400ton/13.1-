@@ -103,14 +103,3 @@ class Product(MixinRepr, Abstract):
         :return: string
         """
         return super().__repr__()
-
-
-# date = {"name": "Samsung Galaxy C23 Ultra",
-#         "description": "256GB, Серый цвет, 200MP камера",
-#         "Color": "Black",
-#         "price": 180000.0,
-#         "quantity": 5}
-#
-# Product.create_product(**date)
-# print(str(Product.create_product(**date)))
-

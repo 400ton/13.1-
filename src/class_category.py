@@ -53,12 +53,16 @@ class Category(MixinRepr):
         """Функция добавления продукта в список,
         продукт должен быть обьектом класса Product.
         :param product:
+        :return: dictionary
         """
-        if isinstance(product, Product):
+        if not isinstance(product, Product):
+            raise ValueError("Продукт должен быть объектом класса Product")
+
+        elif not product.quantity > 0:
+            raise ValueError("Tовар с нулевым или отрицательным количеством не может быть добавлен")
+        else:
             self.__goods.append(product)
             Category.total_products += 1
-        else:
-            raise ValueError("Продукт должен быть объектом класса Product")
 
     def __repr__(self):
         """

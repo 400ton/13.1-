@@ -12,7 +12,7 @@ def main():
             "price": 180000.0,
             "quantity": 5}]
 
-    product = Product('Nokia', 'клевый', 'черный', 10000, 1)
+    product = Product('Nokia', 'клевый', 'черный', 10000, 0)
     product_2 = Product('Siemens', 'клевый', 'черный', 20000, 1)
 
     smartphone = Smartphone('Nokia', 'клевый', 'черный', 10000, 1, 2.2, 'Nokia', 128)
@@ -21,10 +21,8 @@ def main():
     lawn_grass = LawnGrass('Grass', 'green', 'green', 5000, 1, 'russian', 2)
     category = Category('Смартфоны', 'Смартфоны, как средство не только коммуникации, '
                                      'но и получение дополнительных функций для удобства жизни', lst)
-
-    print(product)
-    # print(product + smartphone)
-    # print(smartphone + lawn_grass)
+    category.goods = product
+    print(category.goods)
 
 
 if __name__ == '__main__':
