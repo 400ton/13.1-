@@ -44,33 +44,33 @@ class Product(MixinRepr, Abstract):
         return result
 
     @classmethod
-    def create_product(cls, products, **kwargs, ):
+    def create_product(cls, products, **kwargs,):
         """
         Функция создания нового продукта
         :param products:
         :param kwargs:
         :return: dictionary
         """
-        name = kwargs.get('name')
-        description = kwargs.get('description')
-        color = kwargs.get('color')
-        price = kwargs.get('price')
-        quantity = kwargs.get('quantity')
+        name = kwargs['name']
+        description = kwargs['description']
+        color = kwargs['color']
+        price = kwargs['price']
+        quantity = kwargs['quantity']
 
         if products is None:
             raise ValueError('Список продуктов не может быть пустым')
 
         for value in products:
-            if value['name'] != name:
-                value['color'] = color
-                value['description'] = description
-                if value['price'] <= price:
-                    value['price'] = price
-                    value['quantity'] += quantity
-                    return cls(name=value['name'], description=value['description'], color=value['color'],
-                               price=value['price'], quantity=value['quantity'])
+            if name == value.name:
+                if price <= value.price:
+                    price = value.price
+                    quantity += value.quantity
+                    color = value.color
+                    description = value.description
+                    return cls(name=name, description=description, color=color, price=price,
+                               quantity=quantity)
             else:
-                return cls(**value)
+                return cls(name=name, description=description, color=color, price=price, quantity=quantity)
 
     @property
     def price(self):

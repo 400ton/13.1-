@@ -64,17 +64,19 @@ class Category(MixinRepr):
             self.__goods.append(product)
             Category.total_products += 1
 
+    @property
     def average_price_goods(self):
         """
         Функция возвращает среднюю цену всех продуктов в категории
         :return: float
         """
-        total_price = sum(product['price'] * product['quantity'] for product in self.__goods)
-        total_products = 0
+
         try:
+            total_price = sum(product.price * product.quantity for product in self.__goods)
+            total_products = len(self.__goods)
             return round(total_price / total_products, 1)
         except ZeroDivisionError:
-            return
+            return 0
 
     def __repr__(self):
         """
