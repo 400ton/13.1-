@@ -1,4 +1,5 @@
 from colorama import *
+from exception.custom_exceptions import QuantityError
 from src.class_product import Product
 from src.class_abstract_and_mixin import MixinRepr
 
@@ -56,13 +57,20 @@ class Category(MixinRepr):
         :return: list of products
         """
         if not isinstance(product, Product):
-            raise ValueError("Продукт должен быть объектом класса Product")
+            raise ValueError('The product must be an object of class Product')
 
-        elif not product.quantity > 0:
-            raise ValueError("Tовар с нулевым или отрицательным количеством не может быть добавлен")
+        try:
+            if product.quantity <= 0:
+                raise QuantityError
+        except QuantityError:
+            print(Fore.RED + 'Product quantity cannot be zero or negative' + Fore.RESET)
+
         else:
             self.__goods.append(product)
             Category.total_products += 1
+            print(Fore.GREEN + '\nТовар добавлен' + Fore.RESET)
+        finally:
+            print(Fore.GREEN + '*Oбработка добавления товара завершена' + Fore.RESET)
 
     @property
     def average_price_goods(self):
