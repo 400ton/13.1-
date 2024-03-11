@@ -80,6 +80,7 @@ def test_create_product(test_data):
     product_2 = Product('Siemens', 'клевый', 'черный', 20000, 1)
 
     lst = [product, product_2]
+
     date = {"name": "Nokia",
             "description": "клевый",
             "color": "черный",
@@ -90,16 +91,15 @@ def test_create_product(test_data):
     assert (new_product.name == 'Nokia' and new_product.description == 'клевый' and new_product.color == 'черный'
             and new_product.price == 180000.0 and new_product.quantity == 5)
 
-    data_2 = {"name": "Product 1",
-              "description": "Description 1",
-              "color": "Color 1",
-              "price": 1000.0,
-              "quantity": 1}
+    data_2 = {"name": "Nokia",
+              "description": "клевый",
+              "color": "черный",
+              "price": 100.0,
+              "quantity": 5}
 
     new_product_2 = Product.create_product(lst, **data_2)
-    assert new_product_2.name == 'Product 1'
-    assert new_product_2.price == 10000.0
-    assert new_product_2.quantity == 1
+    assert (new_product_2.name == 'Nokia' and new_product_2.description == 'клевый' and new_product_2.color == 'черный'
+            and new_product_2.price == 10000.0 and new_product_2.quantity == 6)
 
 
 def test_price(test_data):
@@ -107,13 +107,7 @@ def test_price(test_data):
     Тест функции изменения цены товара
     :param test_data:
     """
-    product = {"name": "Product 1",
-               "description": "Description 1",
-               "color": "Color 1",
-               "price": 100000.0,
-               "quantity": 1}
-
-    new_product = Product.create_product(test_data, **product)
+    new_product = Product('Nokia', 'клевый', 'черный', 10000, 1)
     with mock.patch('builtins.input', return_value='y'):
         new_product.price = 200000.0
         assert new_product.price == 200000.0
