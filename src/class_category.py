@@ -63,7 +63,7 @@ class Category(MixinRepr):
             if product.quantity <= 0:
                 raise QuantityError
         except QuantityError:
-            print(Fore.RED + 'QuantityError: Product quantity cannot be zero or negative' + Fore.RESET)
+            print(Fore.RED + 'QuantityError: product quantity cannot be zero or negative' + Fore.RESET)
 
         else:
             self.__goods.append(product)
