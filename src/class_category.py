@@ -32,7 +32,10 @@ class Category(MixinRepr):
         Функция возвращает количество продуктов в категории
         :return: длину списка
         """
-        return len(self.__goods)
+        result = 0
+        for value in self.__goods:
+            result += value.quantity
+        return result
 
     def __str__(self):
         """
